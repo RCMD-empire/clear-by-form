@@ -4,13 +4,13 @@ https://github.com/RCMD-empire/clear-by-form
 @rcmd
 */
 function spreadsheetExtractor(parameters) {
-  const sheetName_TOBeCleared= "Clearable";
-  const clearFormLogName = "Clear form log";
-  const actionQuestionRow= 2;
-  const submitterEmailRow= 3;
-  const clearActionAnswer = "clear";
-  const pingActionAnswer = "ping";
-  const clearStartRow = 2;
+  const sheetName_TOBeCleared= parameters.sheetName_TOBeCleared;
+  const clearFormLogName = parameters.clearFormLogName;
+  const actionQuestionRow= parameters.actionQuestionRow;
+  const submitterEmailRow= parameters.submitterEmailRow;
+  const clearActionAnswer = parameters.clearActionAnswer;
+  const pingActionAnswer = parameters.pingActionAnswer;
+  const clearStartRow = parameters.clearStartRow;
   
   // get the spreadsheet where from this function called
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
