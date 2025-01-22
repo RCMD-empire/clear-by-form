@@ -13,7 +13,7 @@ submitterEmailRow: 3,
 clearActionAnswer: "clear",
 pingActionAnswer: "ping",
 clearStartRow: 2,
-checkboxColumn: 4
+checkboxHeaderCellName: "D1"
 };
 
 function myFunction() {

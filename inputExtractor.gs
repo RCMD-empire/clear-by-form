@@ -11,7 +11,9 @@ function spreadsheetExtractor(parameters) {
   const clearActionAnswer = parameters.clearActionAnswer;
   const pingActionAnswer = parameters.pingActionAnswer;
   const clearStartRow = parameters.clearStartRow;
-  const checkboxColumn = parameters.checkboxColumn;
+  const checkboxHeaderCellName = parameters.checkboxHeaderCellName;
+
+
   
   // get the spreadsheet where from this function called
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -33,9 +35,15 @@ function spreadsheetExtractor(parameters) {
   // init is done here
 
   let lastRow = logsheet.getLastRow();
+
+  // checkbox things
+  const checkboxHeaderCell = logsheet.getRange(checkboxHeaderCellName);
+  const checkboxHeaderText= checkboxHeaderCell.getValue();
+  const checkboxColumn = checkboxHeaderCell.getColumn();
   var checkboxCell = logsheet.getRange(lastRow,checkboxColumn);
   var isDone = checkboxCell.getValue();
-  Logger.log("Checkbox is %s",isDone);
+  Logger.log("Checkbox is: %s",isDone);
+
   let submittedaction = logsheet.getRange(lastRow,actionQuestionRow).getValue();
   console.log("Submitted action: "+submittedaction);
   let submitteremail = logsheet.getRange(lastRow,submitterEmailRow).getValue();
@@ -44,15 +52,20 @@ function spreadsheetExtractor(parameters) {
   //if undifined, nonexistent, or just false -> it's our turn to precced.
   if (isDone != true)
   {
-    switch (submittedaction.toString().toLowerCase()) {
-      case pingActionAnswer:
-        ping(submitteremail, logsheet, clearsheet, spreadsheet);
-        break;
-      case clearActionAnswer:
-        clearing(clearStartRow,clearsheet);
-        break;
-      default:
-        throw Error("Undefined action: "+submittedaction);
+    if (isDone == checkboxHeaderText)
+    {console.log("Empty input table");}
+    else
+    {
+      switch (submittedaction.toString().toLowerCase()) {
+        case pingActionAnswer:
+          ping(submitteremail, logsheet, clearsheet, spreadsheet);
+          break;
+        case clearActionAnswer:
+          clearing(clearStartRow,clearsheet);
+          break;
+        default:
+          throw Error("Undefined action: "+submittedaction);
+      }
     }
     checkboxCell.setValue(true);
   }
