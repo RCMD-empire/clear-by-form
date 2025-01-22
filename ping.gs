@@ -10,7 +10,7 @@ function ping(submitteremail, logsheet, clearsheet, spreadsheet) {
     <h2>Pinged successfully!</h2>
     <p>Used form linked to "${logsheet.getName()}" sheet, clears "${clearsheet.getName()}" sheet.</p>
     <p> Localated in <a href="${spreadsheet.getUrl()}" target="_blank">${spreadsheet.getName()}</a> Spreadsheet.</p>
-    <p>by clear by form Script<br>@rcmd</p>
+    <p>by "clear by form" Script<br>@rcmd</p>
   `;
   // Send the email
   GmailApp.sendEmail(recipient, subject, "", { htmlBody: emailBody });
