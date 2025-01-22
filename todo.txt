@@ -1,3 +1,2 @@
 clear by form
 - return parameters (email, action)
-- delete instead of clear (form issues)
