@@ -1,11 +1,16 @@
 function listLinkedForms() {
-  // Open the active spreadsheet
+  
+  // get the spreadsheet where from this function called
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  
-  // Get the form URL associated with the spreadsheet
-  const formUrl = spreadsheet.getFormUrl());
-  
-  if (formUrl) {
+  var sheets = spreadsheet.getSheets();
+
+  //Debug: sheets names
+  for (const sheet of sheets) 
+  { 
+    console.log('Sheet name: %s, ID: %s',sheet.getName(),sheet.getSheetId());
+    let formUrl = sheet.getFormUrl();
+    console.log('Form URL: %s',formUrl);
+    if (formUrl) {
     // Get the form object
     const form = FormApp.openByUrl(formUrl);
     const formName = form.getTitle();
@@ -14,10 +19,8 @@ function listLinkedForms() {
     Logger.log(`Linked Form: ${formName}`);
     Logger.log(`Form ID: ${formId}`);
     
-    // Output to the user
-    SpreadsheetApp.getUi().alert(`Linked Form:\nName: ${formName}\nID: ${formId}`);
-  } else {
-    Logger.log("No linked forms found for this spreadsheet.");
-    SpreadsheetApp.getUi().alert("No linked forms found for this spreadsheet.");
+    } else {
+      Logger.log("No linked forms found for this spreadsheet.");
+    }
   }
 }
