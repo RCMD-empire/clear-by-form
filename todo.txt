@@ -1,4 +1,3 @@
 clear by form
 - return parameters (email, action)
-- 2 forms compatible (with checkbox)
 - delete instead of clear (form issues)

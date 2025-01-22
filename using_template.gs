@@ -12,7 +12,8 @@ actionQuestionRow: 2,
 submitterEmailRow: 3,
 clearActionAnswer: "clear",
 pingActionAnswer: "ping",
-clearStartRow: 2
+clearStartRow: 2,
+checkboxColumn: 4
 };
 
 function myFunction() {
