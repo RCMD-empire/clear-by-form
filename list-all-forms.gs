@@ -1,3 +1,8 @@
+/* 
+version: 2025.01.22
+https://github.com/RCMD-empire/clear-by-form
+@rcmd
+*/
 function listLinkedForms() {
   
   // get the spreadsheet where from this function called
