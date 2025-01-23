@@ -1,5 +1,5 @@
 /* 
-version: 2025.01.22
+version: 2025.01.23
 https://github.com/RCMD-empire/clear-by-form
 @rcmd
 */
@@ -49,13 +49,19 @@ function spreadsheetExtractor(parameters) {
   let submitteremail = logsheet.getRange(lastRow,submitterEmailRow).getValue();
   console.log("Submitter email: "+submitteremail);
   
+  let retAction = 0; 
+  // 0: nothing happened, '-1': undefined action. Otherwise returns the custom action name.
+
   //if undifined, nonexistent, or just false -> it's our turn to precced.
   if (isDone != true)
   {
     if (isDone == checkboxHeaderText)
-    {console.log("Empty input table");}
+    {
+      console.log("Empty input table");
+    }
     else
     {
+      retAction= submittedaction;
       switch (submittedaction.toString().toLowerCase()) {
         case pingActionAnswer:
           ping(submitteremail, logsheet, clearsheet, spreadsheet);
@@ -64,9 +70,12 @@ function spreadsheetExtractor(parameters) {
           clearing(clearStartRow,clearsheet);
           break;
         default:
+          retAction = -1;
           throw Error("Undefined action: "+submittedaction);
       }
     }
     checkboxCell.setValue(true);
   }
+  let returner = {submitteremail,retAction};
+  return returner;
 }

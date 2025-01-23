@@ -1,5 +1,5 @@
 /* 
-version: 2025.01.22
+version: 2025.01.23
 https://github.com/RCMD-empire/clear-by-form
 @rcmd
 */
@@ -17,5 +17,6 @@ checkboxHeaderCellName: "D1"
 };
 
 function myFunction() {
-  spreadsheetExtractor(parameters);
+  let returnValue = spreadsheetExtractor(parameters);
+  console.log("Returned: email: %s, Action: %d",returnValue.submitteremail,returnValue.retAction);
 }
